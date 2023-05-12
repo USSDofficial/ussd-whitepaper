@@ -1,0 +1,37 @@
+\section{USSD Supply management}
+
+USSD coin is 'initialized' with one-time minting of 1000 USSD, taking 1000 DAI as collateral. 
+This 1000 USSD would allow to create a pool USSD/DAI to have initial liquidity. Uniswap V3 
+is selected as DEX of choice on Ethereum for being largest in volume and long-time reliable 
+solution for on-chain swaps. As the pair is consisting of two stablecoins, the minimal fee 
+tier (0.05\%) is used. Initial liquidity equation at the whole price range would be:
+
+\[ {P_{USSD} \cdot P_{DAI} = 1}, \]
+
+assuming equal price of USSD and DAI as a regular AMM curve that should fit the purpose 
+of price discovery. Other curve variants, such as constant price () or Stableswap invariant 
+(https://classic.curve.fi/files/stableswap-paper.pdf) serve different purposes (e.g. to 
+prevent slippage when having a pool of stablecoins, even with significant different in 
+their amounts).
+
+The pool is used for price discovery of USSD, avoiding the necessity to use any off-chain\
+oracles to keep USSD as autonomous as possible. For protection against flash-loan or 
+liquidity manipulation geometric mean price oracle from Uniswap V3 is used 
+(https://uniswap.org/whitepaper-v3.pdf):
+
+\[ P_{ t1,t2 } = 1.0001^{ { a_{t2}-a_{t1} } \over {t_2 - t_1} }, \]
+
+where t2 and t1 are define interval in seconds, and at1, at2 define accumulator values. 
+The length of the interval could be fine-tuned, making the assumed price less susceptible 
+for short-term fluctuations (and liquidity/loan attacks), gaining some latency, but spending 
+less gas overall on rebalancing operations.
+
+The main way to obtain the USSD would be buying it on the USSD/DAI pool, this would increase 
+the price of USSD in comparison to DAI. In such scenario, two outcomes are possible: 
+the price is arbitraged back (and nothing changes to the supply) or USSD rebalances itself, 
+minting USSD and selling it for DAI on the pool, expanding the total supply of USSD.
+
+In the opposite scenario (price of USSD goes below 1 DAI), USSD contract would reduce supply, 
+using stored collateral to buy USSD back and burn it, reducing total supply of USSD and 
+bringing the peg back to 1 DAI.
+

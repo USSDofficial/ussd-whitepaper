@@ -1,0 +1,130 @@
+\section{Introduction}
+
+\subsection{Concept of Autonomy and Safety}
+
+To make a significant contribution to the crypto economy's freedom 
+and independence, a new secure and autonomous stablecoin is required 
+to minimize the risks associated with centralization and crypto 
+market volatility.
+
+Existing stablecoins are susceptible to the following risks due to their 
+strong connection to the traditional financial system, which is unpredictable:
+
+\begin{enumerate}
+\item Risks due to centralization:
+	\begin{enumerate}
+		\item Stable tokens can be banned/frozen, or the address can be blacklisted by authorized actors.
+    \item The creators of stablecoins can be influenced using legal or other means.
+    \item Some functions of stablecoin tokens might stop working if the project
+    team stops supporting the project, such as collateral re-balancing or 
+    mint/redeem for centralized stables.
+    \item Collateral containing cash/treasuries or other stablecoins that include 
+    cash/treasuries can collapse due to various situations in the banking system 
+    or financial regulation issues.
+  \end{enumerate}
+\item Risks due to crypto market unpredictability and volatility:
+	\begin{enumerate}
+    \item A stablecoin might collapse if its internal business model operates incorrectly. 
+    Dependency on the internal business model makes its behavior much more unpredictable, for example:
+    \begin{itemize}
+      \item For continuous support, a stablecoin project team needs funds. Thus, it needs 
+      revenue generation in some form. For USDT/USDC and other stablecoins backed 
+      by cash/treasures, it is the interest returned from deposits and treasury bond yields. 
+      For DAI and other stablecoins backed by crypto assets, the revenue is fees and commissions 
+      from lending and borrowing.
+    \end{itemize}
+    \item Collateral containing crypto assets can depreciate in value due to a decline 
+    in the crypto market. If the crypto market is down significantly, it can unpeg 
+    a crypto-backed stablecoin from USD.
+  \end{enumerate}
+\end{enumerate}
+
+
+
+The USSD stablecoin aims to avoid the risks associated with existing stablecoins 
+by implementing the following features:
+\begin{enumerate}
+  \item No methods for freezing, blacklisting, banning or pausing transfers are 
+  implemented in the smart-contract. The goal is to make the USSD stablecoin completely unstoppable.
+  \item USSD is a non-profit, long-term project that exists autonomously without any 
+  connection to physical entities. Only code is used, making it non-biased and secure.
+  \item The architecture of the USSD stablecoin is designed to be autonomous. In the 
+  long-term, the operation of the USSD stablecoin would not be dependent on any person.
+  \item Since the USSD protocol operates independently of any business model, it 
+  eliminates the risks associated with the bankruptcy of such models.
+  \item USSD contains only cryptoassets with no connection to cash in banks or any 
+  other traditional financial instruments in the physical world, even low-risk ones.
+  \item USSD's collateral structure is designed to maintain a collateral to capitalization 
+  ratio of more than 10x.
+  \item The USSD smart contract is deployed on the Ethereum main network because it is 
+  the most common and trusted decentralized network that allows the building of a smart contract.
+\end{enumerate}
+
+\begin{table}
+\caption{Comparison of stablecoin features}
+\raggedleft
+\begin{tabular}{|>{\hspace{0pt}}m{0.156\linewidth}|>{\hspace{0pt}}m{0.158\linewidth}|>{\hspace{0pt}}m{0.175\linewidth}|>{\hspace{0pt}}m{0.175\linewidth}|>{\hspace{0pt}}m{0.14\linewidth}|>{\hspace{0pt}}m{0.133\linewidth}|} 
+\hline
+\par{}                                   & \textbf{USDT}                                                                             & \textbf{USDC}                                                             & \textbf{BUSD (USDP)}                                                       & \textbf{DAI}                                                              & \textbf{USSD}                                                     \\ 
+\hline
+Transparency                             & {\cellcolor[rgb]{1,0.843,0.843}}based on auditor reports\textsuperscript{1} & {\cellcolor[rgb]{1,1,0.843}}by paper proof\textsuperscript{2} & {\cellcolor[rgb]{1,1,0.843}}by paper proof \textsuperscript{3} & {\cellcolor[rgb]{0.867,0.91,0.796}}by code\textsuperscript{4} & {\cellcolor[rgb]{0.867,0.91,0.796}}by code            \\ 
+\hline
+Source of collateral                     & {\cellcolor[rgb]{1,1,0.843}}short-term US treasuries, cash, etc.                          & {\cellcolor[rgb]{1,1,0.843}}short-term US treasuries, cash in US banks     & {\cellcolor[rgb]{1,1,0.843}}short-term US treasuries, cash in US banks      & {\cellcolor[rgb]{0.867,0.91,0.796}}crypto-backed (including USDC)         & {\cellcolor[rgb]{0.867,0.91,0.796}}crypto-backed (including DAI)  \\ 
+\hline
+Collateral ratio                        & {\cellcolor[rgb]{1,0.847,0.808}}claimed as 100\%                                             & {\cellcolor[rgb]{1,1,0.843}}100\%                                         & {\cellcolor[rgb]{1,1,0.843}}100\%                                          & {\cellcolor[rgb]{0.867,0.91,0.796}}{\raise.17ex\hbox{$\scriptstyle\sim$}}147\%                 & {\cellcolor[rgb]{0.867,0.91,0.796}}{\raise.17ex\hbox{$\scriptstyle\sim$}}500+\%      \\ 
+\hline
+Regulatory status                         & {\cellcolor[rgb]{1,1,0.843}}Hong Kong entity                                              & {\cellcolor[rgb]{1,1,0.843}}US entity                                     & {\cellcolor[rgb]{1,0.847,0.808}}several entities                           & {\cellcolor[rgb]{1,1,0.843}}US entity                                     & {\cellcolor[rgb]{0.867,0.91,0.796}}no entity                      \\ 
+\hline
+Centralization level of token management & {\cellcolor[rgb]{1,0.847,0.808}}team can freeze tokens                                     & {\cellcolor[rgb]{1,0.847,0.808}}team can freeze tokens                     & {\cellcolor[rgb]{1,0.847,0.808}}team can freeze tokens                      & {\cellcolor[rgb]{1,0.847,0.808}}team can freeze tokens                     & {\cellcolor[rgb]{0.867,0.91,0.796}}no-one can freze tokens        \\ 
+\hline
+Project Management                       & {\cellcolor[rgb]{1,0.847,0.808}}centralized, manual                                       & {\cellcolor[rgb]{1,0.847,0.808}}centralized, manual                       & {\cellcolor[rgb]{1,0.847,0.808}}centralized, manual                        & {\cellcolor[rgb]{1,1,0.843}}DAO managed, manual                           & {\cellcolor[rgb]{0.867,0.91,0.796}}autonomous                     \\ 
+\hline
+Business model                           & {\cellcolor[rgb]{1,1,0.843}}US treasuries yield                                                  & {\cellcolor[rgb]{1,1,0.843}}US treasuries yield                                  & {\cellcolor[rgb]{1,1,0.843}}US treasuries yield                                   & {\cellcolor[rgb]{1,1,0.843}}collateral service fees                         & {\cellcolor[rgb]{0.867,0.91,0.796}}non-profit                     \\
+\hline
+\end{tabular}
+\end{table}
+
+\nopagebreak
+
+\addtocounter{footnote}{1}
+\footnotetext{https://tether.to/en/transparency/\#reports}
+\addtocounter{footnote}{1}
+\footnotetext{https://www.circle.com/en/usdc\#transparency}
+\addtocounter{footnote}{1}
+\footnotetext{https://paxos.com/busd-transparency/}
+\addtocounter{footnote}{1}
+\footnotetext{https://github.com/makerdao}
+
+
+Stablecoins with the largest market capitalization (like USDT / USDC / BUSD / USDP and others) are 
+backed by dollar-evaluated collateral with a 1-to-1 ratio. Issuers of such stablecoins 
+provide documents that are issued by trusted authorities (auditors). Nevertheless, we consider 
+these proofs as paper-proof that contains risks due to their centralized nature, which could 
+be affected by corruption, human mistakes, and political influence.
+
+At the moment of writing, the DAI stablecoin is the largest, most secure, and widespread 
+decentralized stablecoin in the market. DAI's collateral (crypto assets) is evaluated at a 
+147\% ratio to its market capitalization. Nevertheless, DAI stablecoin collateral has some 
+notable nuances that bring risks to it (and some of them have already been realized):
+\begin{itemize}
+  \item DAI's collateral contains a major share of USDC stablecoin (74\% of DAI's capitalization 
+  in April 2023), which is a cash/US treasuries-backed coin and is regulated by US financial authorities. 
+  This means collateral risks of the USDC are also valid for DAI (in March of 2023, DAI depegged 
+  from USD because USDC depegged too due to a bank issue, luckily the situation recovered later).
+  \item USDC (a part of DAI's collateral) and some other stablecoins have an option of freezing 
+  funds (which makes them insecure).
+  \item Both DAI and USDC have legal entities in the US and are obliged to comply with all 
+  regulator requirements, making them susceptible to influence.
+  \item DAI contains a lending/borrowing protocol as a business model to support its existence, 
+  which makes the whole system more complicated, fragile, and dependent on the results of this 
+  business operating.
+\end{itemize}
+
+\subsection{Timing}
+
+The period from 2022 to 2023 is regarded as a "crypto-fall" or "crypto-winter" time, during 
+which the valuations of most crypto assets are low. Hopefully, this period will end soon, 
+and the entire crypto market capitalization will increase by 3-5 times or more, as it has 
+happened several times before. To achieve a high overcollateralization ratio, the USSD 
+stablecoin was created during this time.
+

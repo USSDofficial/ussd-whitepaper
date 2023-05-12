@@ -1,0 +1,20 @@
+\section{Mint and redeem}
+
+If there is positive DAI balance in the collateral, USSD contract can provide DAI for equal 
+amount of USSD in return (that would be burned, contracting supply).
+
+At any given time, USSD can be minted using DAI as collateral at 1-to-1 ratio, expanding 
+total USSD supply.
+
+Ability to mint and redeem USSD for DAI could serve as incentives to rebalance the coin 
+when this is economically viable (covering the gas expenses). However, providing ability 
+to mint or redeem USSD for collateral other than DAI (to which it aims to be pegged) 
+could be exploited as getting a directional exposure to the collateral component 
+(e.g. mint for WETH and then redeem for WETH later would lead to profiting from short 
+exposure if WETH price decreases).
+
+These methods also could be used to help USSD recover in negative scenarios: if USSD value 
+falls below 1 DAI and there are less than 1 DAI reserves per USSD to refill the reserves 
+allowing the USSD to recover it's price by reducing supply (at the expense of the agent 
+performing that).
+

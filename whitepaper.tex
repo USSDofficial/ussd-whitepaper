@@ -1,0 +1,67 @@
+%
+% The first command in your LaTeX source must be the \documentclass command.
+\documentclass{article}
+
+\usepackage[]{todonotes} % notes not showed
+%% \usepackage[draft]{todonotes}   % notes showed
+
+\usepackage{hyperref}
+\usepackage{graphics}
+\usepackage{multicol}
+\usepackage{csquotes}
+
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{makecell}
+
+\usepackage{footnote}
+
+\usepackage{hyperref}
+
+%
+% \BibTeX command to typeset BibTeX logo in the docs
+\AtBeginDocument{%
+  \providecommand\BibTeX{{%
+    \normalfont B\kern-0.5em{\scshape i\kern-0.25em b}\kern-0.8em\TeX}}}
+
+\begin{document}
+
+\title{Autonomous secure dollar (USSD)\ \\white paper}
+
+\author{David Lee \href{mailto:davidleechaum@proton.me}{davidleechaum@proton.me}}
+
+\maketitle
+
+%
+% The abstract is a short summary of the work to be presented in the article.
+\begin{abstract}
+The Autonomous Secure Dollar (USSD) is an open-source protocol designed 
+for creating an autonomous ERC20 stablecoin. It is pegged to the US dollar 
+and has a multiple times collateralization ratio, ensuring long-term stability. 
+The USSD protocol only consists of cryptoassets and has no ties to any 
+physical-world financial instruments such as banks or treasuries. 
+
+It has been designed to be censorship-resistant, ensuring that it can
+remain operational without interference.
+
+
+\end{abstract}
+
+%%\keywords{blockchain, stablecoin}
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\input{1_intro.tex}
+\input{2_collateral_structure.tex}
+\input{3_supply_management.tex}
+\input{4_mint_and_redeem.tex}
+\input{5_rebalancing.tex}
+\input{6_dependencies.tex}
+
+\bibliographystyle{acm} \bibliography{paper}
+
+\end{document}

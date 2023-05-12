@@ -1,0 +1,63 @@
+
+\section{Collateral structure}
+
+The ideal crypto collateral structure should be robust enough to maintain a collateral factor 
+of over 100\% even in harsh scenarios, such as an overall crypto market downturn, a 70-90\% 
+depreciation of BTC/ETH, or even the complete depreciation of one of the crypto assets included 
+as collateral. Due to the high volatility nature of crypto, we have decided to form a collateral 
+structure that will:
+
+\begin{enumerate}
+  \item Diversify using the most common and trusted crypto assets, namely BTC and ETH.
+  \item Include DAI as part of the collateral to enhance usability and liquidity in USSD stablecoin. 
+  Users will be able to redeem DAI in exchange for USSD at any time. DAI was selected as the safe 
+  and decentralized stablecoin in the market at the time of USSD creation.
+  \item Use the most decentralized blockchain that supports smart-contracts, namely the Ethereum Mainnet.
+  \item Include a radical element in the collateral structure, namely the BGL (Bitgesell) coin, 
+  which is deflationary and has a small capitalization (at the time of writing). It was included 
+  in the collateral to overcome collateral fluctuations in the first period of USSD adoption and 
+  to increase collateral upside in the long run.
+  \item Have a flexible structure that changes with time and the market capitalization of the 
+  collateral. The overall goal of the model is to accumulate collateral amounts that are at least 100\% 
+  of the DAI and more than 10 times the crypto assets (BTC and ETH).
+\end{enumerate}
+
+Overview of the last two collateral component attributes.
+
+BGL (Bitgesell) is a well-developed fork of Bitcoin with many parameters that 
+remain the same, such as limited supply (21 million), but with the additional 
+mechanics of burning 90\% of the transaction fees and having block reward halving 
+every year. It is running on its own blockchain, which is very similar to Bitcoin. 
+The reasons for selecting BGL as a part of collateral are:
+\begin{itemize}
+  \item Based on a proven code with similar blockchain safety as Bitcoin
+  \item More coin scarcity in the long run compared to Bitcoin
+  \item Small market cap that has significant upside potential
+\end{itemize}
+To grow and fix the share of DAI in the collateral structure, we have developed a roadmap 
+for USSD collateral development (see Table 2). Once the share is fixed, the collateral structure 
+will be locked forever to prevent any changes.
+
+
+\begin{table}
+\caption{Collateral buying proportions}
+\centering
+\begin{tabular}{|>{\hspace{0pt}}m{0.069\linewidth}|>{\hspace{0pt}}m{0.202\linewidth}|>{\hspace{0pt}}m{0.086\linewidth}|>{\hspace{0pt}}m{0.110\linewidth}|>{\hspace{0pt}}m{0.09\linewidth}|>{\hspace{0pt}}m{0.103\linewidth}|>{\hspace{0pt}}m{0.128\linewidth}|} 
+\hline
+\par{} & \makecell[l]{Collateral\\ buy proportion} & First flutter & Second flutter & Third flutter                          & Fourth flutter & Ultimate mode  \\ 
+\hline
+DAI    & 25\%                          & 0.25x         & 0.35x          & {\cellcolor[rgb]{0.737,0.941,0.855}}1x & 0.8x           & 0.25x          \\ 
+\hline
+wETH   & 25\%                          & 2x            & 4x             & 5x                                     & 6x             & More 10x       \\ 
+\hline
+wBTC   & 25\%                          & 2x            & 4x             & 5x                                     & 6x             & More 10x       \\ 
+\hline
+wBGL   & 25\%                          & 10x           & 20x            & 50x                                    & 100x           & More 500x      \\
+\hline
+\end{tabular}
+\end{table}
+
+
+In the event of a decline in the USSD price, the algorithm for selling collateral to maintain 
+the peg at 1 USD is as follows: DAI will be sold first, followed by wETH, then wBTC, and finally, wBGL.
+

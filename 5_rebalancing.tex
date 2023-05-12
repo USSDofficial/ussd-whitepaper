@@ -1,0 +1,99 @@
+\section{Collateral rebalancing mechanics}
+
+The rebalance function is public and could be executed by anyone. This decision was 
+made deliberately – providing less dependency on a single entity or project team 
+supporting the calls for rebalancing.
+
+In addition, rebalance also could be triggered before token transfer. If a price is 
+exceeding some predefined threshold, the USSD would rebalance itself before any other 
+transfer is done, providing it has an edge over other participants (who can try to 
+front-run rebalancing).
+
+Rebalancing is selling collateral and burning USSD for peg down recovery (supply 
+contraction) and buying collateral components while minting USSD for peg up recovery 
+(supply expansion).
+
+The collateral has selling priority (order), which is:
+1. DAI, 2. WETH, 3. WBTC, 4. WBGL. 
+
+The goal of having an order of collateral liquidation is to have more volatile assets 
+be further in the queue, allowing them to be accumulated and grow in value, while keeping 
+DAI as near-line reserves and serve as a protection buffer from speculative manipulation.
+
+When expanding its supply, USSD would buy assets in non-linear fashion, the main metrics 
+defining this would be total supply and collateralization factor of collateral components. 
+If total supply is less than 50000 USSD, the collateral is DAI-only. After initial growth, 
+the collateral buying is trying to achieve a collateral proportion defined as tiers (or 
+'flutters'), that are defined in table 2.
+
+The current flutter level is determined as total collateralization level of USSD, e.g. 
+first flutter is 0.25x + 2x + 2x + 10x = 14.25x. If collateralization factor is higher 
+this value, then proportion is switched to the next flutter.
+
+E.g., consider the following state of USSD and its collateral:
+USSD total supply: 750000
+
+\begin{table}
+\caption{Collateral state example}
+\centering
+\begin{tabular}{|>{\hspace{0pt}}m{0.336\linewidth}|>{\hspace{0pt}}m{0.22\linewidth}|>{\hspace{0pt}}m{0.323\linewidth}|} 
+\hline
+Collateral stored\par{}(price measured in DAI) & Collateral factor & Target collateral factor               \\ 
+\hline
+289000 DAI                                     & 0.385             & 0.25                                   \\ 
+\hline
+125600 WETH                                    & 0.167             & 2                                      \\ 
+\hline
+450000 WBTC                                    & 0.6               & 2                                      \\ 
+\hline
+500000 WBGL                                    & 0.66              & 10                                     \\ 
+\hline
+Total:  1364600/750000                         & 1.812             & 14.25 (1\textsuperscript{st} flutter)  \\
+\hline
+\end{tabular}
+\end{table}
+
+
+The collateral is bought in equal proportions, if the collateral factor is lower than 
+the target collateral factor. In the example above, DAI would not be bought, as it’s 
+collateral factor of 0.385 is larger than target collateral factor of 0.25, and 1/3rd 
+of the available buying power should be spent
+to buy in equal proportions WETH, WBTC, WBGL (if the threshold of target collateral 
+factor won’t be reached, otherwise the appropriate buying amount for collateral component 
+would be lower). As swapping and buying requires gas, if a portion to buy a collateral 
+component is less than 5\%, it is not bought (most probably it would be bought in 
+the next operations).
+
+Such mechanics also implies applying a cost-averaging accumulation of collateral assets. 
+If a single asset depreciates, it's individual collateral factor decreases and amount 
+to be bought increases.
+
+Even if the collateral portion is higher than target collateral factor, no selling 
+operations are performed during rebalancing.
+
+Rebalancing is performed only if the relative proportion of tokens on the key USSD/DAI pool is
+skewed larger than a certain threshold value (1\%), which is directly impacting swap price on
+the pool, inside a rebalance function there is no external calls (outside Uniswap's contracts
+and DAI transfer), and it's checked that amounts that are put into USSD/DAI pool make propotion
+closer to 1-to-1. Even if some collateral pricing is a bit mismatched (e.g. Uniswap V3 on-chain
+price oracle changes price once per block) the DAI that was accrued selling other collateral
+would stay as DAI collateral on the USSD contract.
+
+The rebalancing amount is also multiplied by a `safety buffer' (a value of 0.99), to take pool
+fees into account and to ensure that rebalance operations don't cross 1.0 USSD/DAI boundary
+to minimize arbitrage opportunities using USSD contract.
+
+\subsection{Collateral storage}
+
+The USSD contract acts itself as collateral holder. No other entity has access to USSD 
+collateral except the contract's logic of collateral management, and DAI is also 
+transferred during mint/redeem operations. In addition, at any moment, the collateral 
+balances on the address of the USSD smart-contract serve as the proof of collateral 
+presence and sufficiency. Collateral is not allocated in any other project 
+(lending/borrowing platforms, investment vaults etc.) and is fully visible at all times.
+
+USSD contract would provide and maintain allowances for itself, and collateral components
+(DAI, WETH, WBTC, WBGL) to Uniswap V3 router for swap operations.
+
+Prices of collateral components are measured in DAI (as USSD itself is pegged to DAI).
+

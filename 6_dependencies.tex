@@ -1,0 +1,30 @@
+\section{Dependencies}
+
+This is a list of dependencies the USSD smart contract has for its implementation
+and functioning:
+
+\begin{enumerate}
+  \item OpenZeppelin contracts-upgradeable library\textsuperscript{5}, that is 
+  thoroughly audited and widely used implementation of various useful libraries for 
+  access management, transparent proxy pattern and others. To reserve ability to 
+  patch possible bugs, the contract would be kept upgradeable (for a limited time, 
+  and then locked afterwards). There are two roles initially defined: one is standard
+  DEFAULT\_ADMIN role for managing upgradeability, and second is STABLE\_CONTROL role,
+  for managing collateral and several numerical parameters (rebalance minimal threshold,
+  flutter ratios).
+  \item DAI stablecoin contract\textsuperscript{6}, as     
+       DAI is used as metric of price and as part of the collateral.
+  \item Uniswap V3 (universal V3 router\textsuperscript{7} and pool contracts)
+       Uniswap is used extensively by USSD to measure peg, collateral ratio, 
+       perform collateral buying and selling using swap routes (sometimes 2 or 3 pools
+       in a swap chain). The pool swap path can be administered
+\end{enumerate}
+
+
+\addtocounter{footnote}{1}
+\footnotetext{https://github.com/OpenZeppelin/openzeppelin-contracts-upgradeable}
+\addtocounter{footnote}{1}
+\footnotetext{https://etherscan.io/token/0x6b175474e89094c44da98b954eedeac495271d0f}
+\addtocounter{footnote}{1}
+\footnotetext{https://etherscan.io/address/0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45}
+

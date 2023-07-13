@@ -1,20 +1,24 @@
 \section{Mint and redeem}
 
-If there is positive DAI balance in the collateral, USSD contract can provide DAI for equal 
-amount of USSD in return (that would be burned, contracting supply).
+%If there is positive DAI balance in the collateral, USSD contract can provide DAI for equal 
+%amount of USSD in return (that would be burned, contracting supply).
 
 At any given time, USSD can be minted using DAI as collateral at 1-to-1 ratio, expanding 
-total USSD supply.
+total USSD supply. This also can expand supply with larger amounts than current pool liquidity
+(so that USSD could be minted with no slippage).
 
-Ability to mint and redeem USSD for DAI could serve as incentives to rebalance the coin 
+Ability to mint USSD for DAI could serve as incentive to rebalance the coin 
 when this is economically viable (covering the gas expenses). However, providing ability 
 to mint or redeem USSD for collateral other than DAI (to which it aims to be pegged) 
 could be exploited as getting a directional exposure to the collateral component 
 (e.g. mint for WETH and then redeem for WETH later would lead to profiting from short 
 exposure if WETH price decreases).
 
-These methods also could be used to help USSD recover in negative scenarios: if USSD value 
-falls below 1 DAI and there are less than 1 DAI reserves per USSD to refill the reserves 
-allowing the USSD to recover it's price by reducing supply (at the expense of the agent 
-performing that).
+To help USSD recover in negative scenarios (if USSD value 
+falls below 1 DAI and there are less than 1 USD/DAI reserves per USSD): to refill the reserves 
+by directly providing collateral to the USSD contract's address (at the expense of the agent 
+performing that), and then triggering rebalance (optional) to reduce supply and repeg.
 
+From the other side, implementing a redeeming method (e.g. redeem DAI for USSD) would de-incentivize 
+calling rebalance, with more speculative arbitrage exposed, so direct redeem function is not included
+in the initial implementation of USSD.

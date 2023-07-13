@@ -95,5 +95,14 @@ presence and sufficiency. Collateral is not allocated in any other project
 USSD contract would provide and maintain allowances for itself, and collateral components
 (DAI, WETH, WBTC, WBGL) to Uniswap V3 router for swap operations.
 
-Prices of collateral components are measured in DAI (as USSD itself is pegged to DAI).
+Prices of collateral components are measured through a series of contracts implementing simple
+oracle-like interface. There's some flexibility reserved at the time of writing related to
+the oracle implementations: there are numerous options available, such as using Chainlink
+public feeds (available for larger assets such as DAI, WBTC, WETH), measure TWAP price
+from Uniswap V3 pools, or other implementations. Oracle contract is assumed to return the price
+in USD (but that is just the naming of the function), in theory, it could be returning price
+in DAI. Various approaches to implementing price measurement have their own benefits and risks,
+and could be a part of further research.
+
+
 

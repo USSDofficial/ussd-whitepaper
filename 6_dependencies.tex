@@ -13,7 +13,8 @@ and functioning:
   for managing collateral and several numerical parameters (rebalance minimal threshold,
   flutter ratios).
   \item DAI stablecoin contract\textsuperscript{6}, as     
-       DAI is used as metric of price and as part of the collateral.
+       DAI is used as part of the collateral, and USSD tries to maintain its peg for DAI
+       through Uniswap V3 pool rebalancing.
   \item Uniswap V3 (universal V3 router\textsuperscript{7} and pool contracts)
        Uniswap is used extensively by USSD to measure peg, collateral ratio, 
        perform collateral buying and selling using swap routes (sometimes 2 or 3 pools

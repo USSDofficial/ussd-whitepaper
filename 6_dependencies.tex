@@ -1,4 +1,4 @@
-\section{Dependencies}
+\section{Dependencies and deployment}
 
 This is a list of dependencies the USSD smart contract has for its implementation
 and functioning:
@@ -28,4 +28,16 @@ and functioning:
 \footnotetext{https://etherscan.io/token/0x6b175474e89094c44da98b954eedeac495271d0f}
 \addtocounter{footnote}{1}
 \footnotetext{https://etherscan.io/address/0x68b3465833fb72A70ecDF485E0e4C7bD8665Fc45}
+
+Contracts for the USSD ERC20 token were deployed in two EVM-compatible blockchains:
+
+\begin{enumerate}
+  \item Ethereum Mainnet (chain id 1): contract address \newline
+0x97D87327D8F168b0Ba317fd8B210d2B087f4b851;
+  \item BNB Chain (chain id 56): 0x19a23fEA27B1d845a334DFAADb5e54FAd7cdcE74. In addition, as DAI liquidity
+for BNB chain on Uniswap is not sufficient for USSD operation, USDT was used as a substitute (that may be changed
+in the future for the purposes described earlier).
+\end{enumerate}
+
+
 
